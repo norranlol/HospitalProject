@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Info About Doctor Content</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pr..,300,400,600,700,900" rel="stylesheet" />
+        <link href="swarming/default.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="swarming/fonts.css" rel="stylesheet" type="text/css" media="all" />
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div id="content">
+                <h:form>
+                <p:panelGrid columns="2" styleClass="primepanelgrid">
+                    <p:commandButton id="returnMainPage" icon="ui-icon-circle-arrow-w"
+                        action="#{doctorMB.findDoctorsBySpeciality()}" title="Вернуться на предыдущую страницу" />
+                    <p:outputLabel value="Вернуться на предыдущую страницу"/>
+                </p:panelGrid>
+                <br/>
+                <p:panelGrid columns="2" styleClass="primepanelgrid">
+                    <p:outputLabel value="Фамилия:"/>
+                    <p:outputLabel value="#{doctorMB.selectedDoctor.surname}"/>
+                    <p:outputLabel value="Имя:"/>
+                    <p:outputLabel value="#{doctorMB.selectedDoctor.name}"/>
+                    <p:outputLabel value="Отчество:"/>
+                    <p:outputLabel value="#{doctorMB.selectedDoctor.patronymic}"/>
+                    <p:outputLabel value="Категория:"/>
+                    <p:outputLabel value="#{doctorMB.category.title}"/>
+                    <p:outputLabel value="Специальность:"/>
+                    <p:outputLabel value="#{doctorMB.selectedSpeciality.title}"/>
+                    <p:outputLabel value="Расписание:"/>
+                    <p:outputLabel value="#{doctorMB.selectedDoctor.schedule}"/>
+                </p:panelGrid>
+                </h:form>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>
+

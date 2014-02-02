@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Список найденных врачей</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pr..,300,400,600,700,900" rel="stylesheet" />
+        <link href="swarming/default.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="swarming/fonts.css" rel="stylesheet" type="text/css" media="all" />
+    </h:head>
+    <h:body>
+        <ui:insert name="logotype" >
+            <ui:include src="/templates/common/logo.xhtml"/>
+        </ui:insert>
+        <ui:insert name="header">
+            <ui:include src="/templates/index/header.xhtml" />
+        </ui:insert>
+        <ui:insert name="content" >
+            <ui:include src="/templates/infoAboutDoctor/content.xhtml" />
+        </ui:insert>
+    </h:body>
+</html>
+

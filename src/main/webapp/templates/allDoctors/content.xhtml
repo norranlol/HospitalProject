@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      >
+    <h:head>
+        <title>All Doctors Content</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pr..,300,400,600,700,900" rel="stylesheet" />
+        <link href="swarming/default.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="swarming/fonts.css" rel="stylesheet" type="text/css" media="all" />
+        <script type="text/javascript"
+             src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+        </script>
+        <script type="text/javascript"
+             src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.js">
+        </script>
+        <script type="text/javascript" src="/kauswagan/js/jquery.slimscroll.min.js">
+        </script>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div id="content">
+                <h:form prependId="true">
+                <p:panel styleClass="primepanel">
+                    <p:outputLabel value="Все врачи"/>
+                </p:panel>
+                    <br/>
+                    <p:dataTable id="dbTable" var="doctor" value="#{allDoctorsPageBean.listOfDoctors}"
+                                 style="position: relative;left: 50px;" >
+                        <p:column headerText="ID">
+                            #{doctor.id}
+                        </p:column>
+                        <p:column headerText="Фамилия">
+                            #{doctor.surname}
+                        </p:column>
+                        <p:column headerText="Имя">
+                            #{doctor.name}
+                        </p:column>
+                        <p:column headerText="Отчество">
+                            #{doctor.patronymic}
+                        </p:column>
+                        <p:column headerText="Специальность">
+                            #{doctor.speciality}
+                        </p:column>
+                        <p:column headerText="Категория">
+                            #{doctor.category}
+                        </p:column>
+                    </p:dataTable>
+                    
+                    <p:remoteCommand id="remote" name="loadMore" update="dbTable" process="@this"
+                                     actionListener="#{allDoctorsPageBean.loadMoreData()}"
+                                     oncomplete="handleLoadEnd();">
+                    </p:remoteCommand>
+                    
+                    <pe:waypoint id="way" offset="function(){return $.waypoints('viewportHeight') - $(this).outerHeight()}" widgetVar="widgetWay">
+                        <pe:javascript event="reached" execute="handleLoadStart(ext);" /> 
+                    </pe:waypoint>
+                                
+                    <script type="text/javascript">
+                       function handleLoadStart(ext){
+                           if(ext.direction === "down"){
+                               PF('widgetWay').remove();
+                               loadMore();
+                           }
+                       }
+
+                       function handleLoadEnd(){
+                           PF('widgetWay').register();             
+                       }
+                   </script>   
+                  
+                </h:form>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>

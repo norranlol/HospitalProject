@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Main Page Content</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pr..,300,400,600,700,900" rel="stylesheet" />
+        <link href="swarming/default.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="swarming/fonts.css" rel="stylesheet" type="text/css" media="all" />
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div id="content">
+                <h:form>
+                    <p:panelGrid columns="2" styleClass="primepanelgrid">
+                        <p:commandButton id="returnMainPage" icon="ui-icon-circle-arrow-w"
+                            action="index" title="Вернуться на главную страницу" />
+                        <p:outputLabel value="Вернуться на главную страницу"/>
+                    </p:panelGrid>
+                    <p:dataTable id="doctors" var="doctor" styleClass="primetable2"
+                                 value="#{doctorMB.listOfDoctors}">
+                        <f:facet name="header">
+                            Список найденных врачей
+                        </f:facet>
+                        <p:column>
+                            <f:facet name="header">
+                                Фамилия
+                            </f:facet>
+                            <p:outputLabel value="#{doctor.surname}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                Имя
+                            </f:facet>
+                            <p:outputLabel value="#{doctor.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                Отчество
+                            </f:facet>
+                            <p:outputLabel value="#{doctor.patronymic}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                Специальность
+                            </f:facet>
+                            <p:outputLabel value="#{doctorMB.selectedSpeciality.title}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                Расписание
+                            </f:facet>
+                            <p:outputLabel value="#{doctor.schedule}"/>
+                        </p:column>
+                        <p:column style="width: 20%">
+                            <p:commandButton title="Просмотр данных о враче" icon="ui-icon-person"
+                                             action="#{doctorMB.showInfoAboutDoctor()}">
+                                <f:setPropertyActionListener value="#{doctor}"
+                                                             target="#{doctorMB.selectedDoctor}"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>
+
